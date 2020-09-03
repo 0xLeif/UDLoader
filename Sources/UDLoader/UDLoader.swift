@@ -6,6 +6,7 @@ public enum UDLoaderError: Error {
 }
 
 public extension Encodable {
+    @discardableResult
     func save(withKey key: String) -> LaterValue<Void> {
         Later.promise { promise in
             do {
@@ -19,6 +20,7 @@ public extension Encodable {
 }
 
 public extension Decodable {
+    @discardableResult
     static func load(withKey key: String) -> LaterValue<Self> {
         Later.promise { promise in
             guard let data = UserDefaults.standard.data(forKey: key) else {
